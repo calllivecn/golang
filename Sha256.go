@@ -18,6 +18,7 @@ func main(){
 
 func Sha256(){
 	sha := sha256.New()
-	sha.Write([]byte("张旭"))
-	fmt.Printf("%x\n",sha.Sum(nil))
+    text := "你以为你是谁啊？"
+	sha.Write([]byte(text))
+	fmt.Printf("%x  %s\n",sha.Sum(nil),text)
 }

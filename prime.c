@@ -2,7 +2,7 @@
 #include<math.h>
 
 int prime(unsigned long n){
-	if(n <= 3) return 0;
+	if(n <= 2) return 1;
 	
 	unsigned long i;
 	for(i=3;i< (unsigned long)sqrt(n);i+=2){
@@ -12,16 +12,12 @@ int prime(unsigned long n){
 }
 
 
-unsigned long M = 10000000;
+unsigned long M = 500000;
 
 int main(int argc, char *argv[]){
 	unsigned long i;
-	if(M <=3){
-		printf("1,2,3:是素数\n");
-		return 0;
-		}
 
-	for(i=3;i<=M;i+=2){
+	for(i=3;i<=M;i+=1){
 		if(prime(i));
 			//printf("%ld:是素数\n",i);
 	}
