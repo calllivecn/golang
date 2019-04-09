@@ -11,6 +11,12 @@ import (
 func main(){
 
     r := strings.NewReader("我 --在工要最小值 在要械苛在圾要。。。")
+    r_len := r.Len()
+    //r_cap := cap(r)
+
+    fmt.Println("string的长度：", r_len)
+    //fmt.Println("string的cap： ", r_cap)
+
     b:= make([]byte,3)
     for {
         n, err := r.Read(b)
