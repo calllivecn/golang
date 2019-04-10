@@ -1,0 +1,33 @@
+2. 导入动态库 .so 或 .dll 的形式
+
+假设项目目录如下
+|-project
+|  |-lib
+|  |  |-libvideo.dll
+|  |  |-libvideo.so
+|  |-include
+|  |  |-video.h
+|  |-src
+|  |  |-main.go
+
+头文件 .h 如下面这样
+
+//video.h
+#ifndef VIDEO_H
+#define VIDEO_H
+void exeFFmpegCmd(char* cmd); // 声明
+#endif
+
+源文件 .c 如下面这样
+#include <stdio.h>
+#include "video.h"
+ 
+void exeFFmpegCmd(char* cmd){ // 实现
+    // ....
+    printf("finish");
+}
+使用 gcc 或 g++ 生成 .so库，或 win 下生成 dll
+例如： gcc video.c -fPIC -shared -o libvideo.so
+
+最后 main.go
+把动态库放到一个你喜欢的目录，也可以放到当前项目里面，像上面列出的例子一样。再引用
