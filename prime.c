@@ -2,10 +2,10 @@
 #include<math.h>
 
 int prime(unsigned long n){
-	if(n <= 2) return 1;
+	if(n == 1) return 0;
 	
 	unsigned long i;
-	for(i=3;i< (unsigned long)sqrt(n);i+=2){
+	for(i=2;i<= (unsigned long)sqrt(n);i++){
 		if(0 == n % i) return 0;
 		}
 	return 1;
