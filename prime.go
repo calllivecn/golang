@@ -45,7 +45,7 @@ func no_print( n uint64) {
 
 	var i uint64
 
-	for i = 1; i <= NUMBER; i++ {
+	for i = 1; i <= n; i++ {
 		prime(i)
 	}
 }
@@ -54,7 +54,7 @@ func print_( n uint64) {
 
 	var i uint64
 
-	for i = 1; i <= NUMBER; i++ {
+	for i = 1; i <= n; i++ {
 		if prime(i) {
 			fmt.Println(i, "是素数")
 		}
