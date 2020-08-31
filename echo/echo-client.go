@@ -35,11 +35,12 @@ func main() {
 
 	input := bufio.NewScanner(os.Stdin)
 
-	r_buf := make([]byte, 256)
+	// rbuf := make([]byte, 256)
 
+	end:
 	for {
 
-		fmt.Printf("请输入： ")
+		fmt.Printf("请输入：")
 
 		if !input.Scan() {
 			fmt.Println("退出。")
@@ -47,23 +48,35 @@ func main() {
 		}
 
 		text := input.Text()
-		if text == "quit" {
+		switch text {
+		case "quit":
 			fmt.Println("Bye")
-			break
-
-		}else if text == "" {
+			break end
+		case "":
 			continue
-		}else{
+		default:
 			// fmt.Println(text)
-			fmt.Println("你的输入: ", text, "byte :", input.Bytes())
+			fmt.Println("你的输入:", text, "byte:", input.Bytes())
 		}
 
         conn.Write(input.Bytes())
 
-		r_buf = r_buf[:0]
+		// _ = reset(rbuf)
+		rbuf := make([]byte, 256)
 
-		r_n, _ := conn.Read(r_buf)
+		rn, _ := conn.Read(rbuf)
 
-        fmt.Println("echo from server: ", string(r_buf[:r_n]))
+        fmt.Println("echo from server: ", string(rbuf[:rn]))
 	}
+}
+
+
+func reset(b []byte) error {
+	l := len(b)
+	var null byte = byte('0')
+	for i := 0; i < l; i++ {
+		b[i] = null
+	}
+
+	return nil
 }
