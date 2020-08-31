@@ -11,9 +11,9 @@ int add(int a,int b){
 }
 */
 import "C"  // 切勿换行再写这个
- 
+
 import "fmt"
- 
+
 func main() {
     fmt.Println(C.add(2, 1))
 }

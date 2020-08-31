@@ -1,0 +1,17 @@
+gocode
+gopkgs
+go-outline
+go-symbols
+guru
+gorename
+gotests
+gomodifytags
+impl
+fillstruct
+goplay
+godoctor
+dlv
+gocode-gomod
+godef
+goreturns
+golin

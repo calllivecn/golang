@@ -13,7 +13,7 @@ import (
     "os"
     //"io"
     //"strings"
-    "bytes"
+    // "bytes"
 )
 
 
@@ -31,7 +31,8 @@ func main(){
         conn, err := accept.Accept()
 
         if err != nil {
-            fmt.Printf("Fail to connect %s\n", err)
+            fmt.Printf("Fail to Accept() %s\n", err)
+            os.Exit(1)
         }
 
         fmt.Printf("recv log: %s --> %s\n", conn.RemoteAddr(), conn.LocalAddr())
@@ -40,33 +41,23 @@ func main(){
 }
 
 
-
 func Echo(conn net.Conn) {
 
     defer conn.Close()
     defer fmt.Println("defer conn.Close() 执行了。")
 
-    //empty := byte(0)
-    //got := []byte("Got: ")
     for{
-        buf := make([]byte, 128)
+        buf := make([]byte, 256)
 
         data_len, err := conn.Read(buf)
-        if err != nil || data_len == 0 {
+        if err != nil {
             fmt.Printf("disconnect ... data_len: %d\terr: %s\n", data_len, err)
-            //conn.Close()
             break
         }
 
-        tmp := mergeByteSlice([]byte("Got: "), buf)
-        fmt.Printf("Len: %d, %s", data_len, tmp)
-        conn.Write(tmp)
+        fmt.Printf("Len: %d, %s\n", data_len, buf[:data_len])
+        conn.Write(buf[:data_len])
 
     }
 
 }
-
-func mergeByteSlice(s ... []byte) []byte{
-    return bytes.Join(s, []byte(""))
-}
-
